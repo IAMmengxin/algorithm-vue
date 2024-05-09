@@ -1,12 +1,27 @@
 <script setup lang="ts">
-import { ref } from 'vue'
-import {question,knapsackWithItems,knapsack,maxValueWithinHeight} from "../althorithm/DP";
+import {ref} from 'vue'
+import {question, knapsackWithItems, knapsack, maxValueWithinHeight} from "../althorithm/DP";
+import CoinChangeSpecial from "../althorithm/CoinChangeSpecial";
+import ActivitySelection from "../althorithm/ActivitySelection";
+import FractionalKnapsack from "../althorithm/FractionalKnapsack";
+import Heap from "../althorithm/Heap";
+import HuffmanTree from "../althorithm/HuffmanTree";
 
 defineProps<{ msg: string }>()
-question(66)
+/*question(66)
 const result = knapsackWithItems(66);
 console.log(`最大价值: ${result.maxValue}`,`被选中的物品:`, result.selectedItems);
-console.log(maxValueWithinHeight())
+console.log(maxValueWithinHeight())*/
+CoinChangeSpecial.coinChange(233)
+ActivitySelection.activitySelection()
+FractionalKnapsack.fractionalKnapsack(210)
+let codes = HuffmanTree.generateHuffmanCodes("this is an example for huffman encoding");
+console.log(codes)
+let map = new Map<string, string>();
+HuffmanTree.generateCodes(
+    HuffmanTree.buildTree("this is an example for huffman encoding")
+    , "", map)
+console.log(map)
 const count = ref(0)
 </script>
 
@@ -24,7 +39,7 @@ const count = ref(0)
   <p>
     Check out
     <a href="https://vuejs.org/guide/quick-start.html#local" target="_blank"
-      >create-vue</a
+    >create-vue</a
     >, the official Vue + Vite starter
   </p>
   <p>
