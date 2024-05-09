@@ -1,8 +1,12 @@
 <script setup lang="ts">
 import { ref } from 'vue'
+import {question,knapsackWithItems,knapsack,maxValueWithinHeight} from "../althorithm/DP";
 
 defineProps<{ msg: string }>()
-
+question(66)
+const result = knapsackWithItems(66);
+console.log(`最大价值: ${result.maxValue}`,`被选中的物品:`, result.selectedItems);
+console.log(maxValueWithinHeight())
 const count = ref(0)
 </script>
 
