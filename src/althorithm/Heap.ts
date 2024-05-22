@@ -7,13 +7,19 @@ interface HeapType<T> {
 
 //堆
 export class Heap<T> {
-    private heap: HeapType<T>[] = []
+    get heap(): HeapType<T>[] {
+        return this._heap;
+    }
+    private _heap: HeapType<T>[] = []
     public isMinHeap: boolean = true;
+    constructor(isMinHeap: boolean = true) {
+        this.isMinHeap = isMinHeap;
+    }
 
     //构建堆，key为用来比较的键
     public buildHeap(arr: HeapType<T>[]) {
         const isMinHeap = this.isMinHeap;
-        const heap: HeapType<T>[] = this.heap;
+        const heap: HeapType<T>[] = this._heap;
         if (isMinHeap) {
             for (let i = arr.length - 1; i >= 0; i--) {
                 const item = arr[i];
@@ -29,7 +35,7 @@ export class Heap<T> {
     }
 
     private pushMin(item: HeapType<T>) {
-        const heap = this.heap;
+        const heap = this._heap;
         heap.push(item)
         let length = heap.length - 1;
         while (length > 0) {
@@ -42,7 +48,7 @@ export class Heap<T> {
     }
 
     private pushMax(item: HeapType<T>) {
-        const heap = this.heap;
+        const heap = this._heap;
         heap.push(item)
         let length = heap.length - 1;
         while (length > 0) {
@@ -55,7 +61,7 @@ export class Heap<T> {
     }
 
     public push(item: HeapType<T>) {
-        const heap: HeapType<T>[] = this.heap;
+        const heap: HeapType<T>[] = this._heap;
         if (heap.length === 0) {
             heap.push(item)
             return;
@@ -68,7 +74,7 @@ export class Heap<T> {
 
     //最小堆，删除最小值
     public shift() {
-        const heap: HeapType<T>[] = this.heap;
+        const heap: HeapType<T>[] = this._heap;
         const length = heap.length - 1;
         const removed = heap[0];
         this.swap(heap, 0, length);
@@ -81,60 +87,88 @@ export class Heap<T> {
     }
 
     public shiftMin() {
-        const heap: HeapType<T>[] = this.heap;
+        const heap: HeapType<T>[] = this._heap;
         const length = heap.length;
         let cIndex = 0;
-        while (cIndex < length) {
-            const left = heap[cIndex * 2 + 1];
-            const right = heap[cIndex * 2 + 2];
-            if (left.key > heap[cIndex].key) {
-                this.swap(heap, cIndex, cIndex * 2 + 1);
-                cIndex = cIndex * 2 + 1;
-            } else if (right.key > heap[cIndex].key) {
-                this.swap(heap, cIndex, cIndex * 2 + 2);
-                cIndex = cIndex * 2 + 2;
-            } else
+        while (cIndex * 2 + 1 < length) {
+            const leftIndex = cIndex * 2 + 1;
+            const rightIndex = cIndex * 2 + 2;
+            const left = heap[leftIndex];
+            if (rightIndex < length) {
+                const right = heap[rightIndex];
+                if (left.key < right.key) {
+                    if (left.key < heap[cIndex].key) {
+                        this.swap(heap, cIndex, leftIndex);
+                        cIndex = leftIndex;
+                        continue;
+                    }
+                } else {
+                    if (right.key < heap[cIndex].key) {
+                        this.swap(heap, cIndex, rightIndex);
+                        cIndex = rightIndex;
+                        continue;
+                    }
+                }
                 break;
+            } else {
+                if (left.key < heap[cIndex].key) {
+                    this.swap(heap, cIndex, leftIndex);
+                    cIndex = leftIndex;
+                } else break;
+            }
         }
     }
 
     public shiftMax() {
-        const heap: HeapType<T>[] = this.heap;
+        const heap: HeapType<T>[] = this._heap;
         const length = heap.length;
         let cIndex = 0;
-        while (cIndex < length) {
-            const left = heap[cIndex * 2 + 1];
-            const right = heap[cIndex * 2 + 2];
-            if (left.key < heap[cIndex].key) {
-                this.swap(heap, cIndex, cIndex * 2 + 1);
-                cIndex = cIndex * 2 + 1;
-            } else if (right.key < heap[cIndex].key) {
-                this.swap(heap, cIndex, cIndex * 2 + 2);
-                cIndex = cIndex * 2 + 2;
-            } else
+        while (cIndex * 2 + 1 < length) {
+            const leftIndex = cIndex * 2 + 1;
+            const rightIndex = cIndex * 2 + 2;
+            const left = heap[leftIndex];
+            if (rightIndex < length) {
+                const right = heap[rightIndex];
+                if (left.key > right.key) {
+                    if (left.key > heap[cIndex].key) {
+                        this.swap(heap, cIndex, leftIndex);
+                        cIndex = leftIndex;
+                        continue;
+                    }
+                } else {
+                    if (right.key > heap[cIndex].key) {
+                        this.swap(heap, cIndex, rightIndex);
+                        cIndex = rightIndex;
+                        continue;
+                    }
+                }
                 break;
+            } else {
+                if (left.key > heap[cIndex].key) {
+                    this.swap(heap, cIndex, leftIndex);
+                    cIndex = leftIndex;
+                } else break;
+            }
         }
     }
 
     //删除最后一个
     public pop(): HeapType<T> | undefined {
-        const heap: HeapType<T>[] = this.heap;
+        const heap: HeapType<T>[] = this._heap;
         return heap.pop();
     }
 
     //转换为霍夫曼树
     public toTree(): T {
-        this.isMinHeap = true;
-        const heap: HeapType<T>[] = this.heap;
-        const root = heap[0].value;
+        const heap: HeapType<T>[] = this._heap;
+        let root = heap[0].value;
         // const queue: HuffmanNode[] = [root];
-        debugger
         while (heap.length > 1) {
             const left: T = (this.shift() as HeapType<T>).value;
             const right: T = (this.shift() as HeapType<T>).value;
             const parent: T = {
-                left,
-                right,
+                left: left,
+                right: right,
                 freq: (left as HuffmanNode).freq + (right as HuffmanNode).freq,
                 char: ''
             } as T;
@@ -142,6 +176,7 @@ export class Heap<T> {
                 key: (<HuffmanNode>parent).freq,
                 value: parent
             })
+            root = parent;
         }
         return root;
     }

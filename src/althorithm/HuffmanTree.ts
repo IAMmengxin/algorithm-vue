@@ -27,8 +27,14 @@ export class HuffmanTree {
             left: null,
             right: null
         }
-        const priorityQueue: Heap<HuffmanNode> = this.createNode(text);
-        root = priorityQueue.toTree();
+        const huffmanTree: Heap<HuffmanNode> = this.createNode(text);
+        console.log("频率：",huffmanTree.heap.map(item => {
+            return {
+                "char":item.value.char,
+                item: item.value.freq
+            }
+        }))
+        root = huffmanTree.toTree();
         /*let index = 0;
         while (index < priorityQueue.length - 1) {
             const node1 = priorityQueue[index];
@@ -94,7 +100,7 @@ export class HuffmanTree {
 
     //步骤2：创建节点
     private createNode(text: string): Heap<HuffmanNode> {
-        const nodes: Heap<HuffmanNode> = new Heap<HuffmanNode>();
+        const nodes: Heap<HuffmanNode> = new Heap<HuffmanNode>(true);
         const frequencies: frequenciesType = this.calculateFrequencies(text);
         for (let key in frequencies) {
             nodes.push({
