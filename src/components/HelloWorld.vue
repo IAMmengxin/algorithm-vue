@@ -6,13 +6,14 @@ import ActivitySelection from "../althorithm/ActivitySelection";
 import FractionalKnapsack from "../althorithm/FractionalKnapsack";
 import Heap from "../althorithm/Heap";
 import HuffmanTree from "../althorithm/HuffmanTree";
+import Kruskal from "../althorithm/MinimumSpanningTree/Kruskal.ts";
 
 defineProps<{ msg: string }>()
 /*question(66)
 const result = knapsackWithItems(66);
 console.log(`最大价值: ${result.maxValue}`,`被选中的物品:`, result.selectedItems);
 console.log(maxValueWithinHeight())*/
-CoinChangeSpecial.coinChange(233)
+/*CoinChangeSpecial.coinChange(233)
 ActivitySelection.activitySelection()
 FractionalKnapsack.fractionalKnapsack(210)
 let codes = HuffmanTree.generateHuffmanCodes("this is an example for huffman encoding");
@@ -21,7 +22,8 @@ let map = new Map<string, string>();
 HuffmanTree.generateCodes(
     HuffmanTree.buildTree("this is an example for huffman encoding")
     , "", map)
-console.log(map)
+console.log(map)*/
+Kruskal.test()
 const count = ref(0)
 </script>
 
