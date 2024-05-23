@@ -1,13 +1,14 @@
 <script setup lang="ts">
 import {ref} from 'vue'
-import {question, knapsackWithItems, knapsack, maxValueWithinHeight} from "../althorithm/DP";
+import {question, knapsackWithItems, knapsack, maxValueWithinHeight} from "../althorithm/DP/DP.ts";
 import CoinChangeSpecial from "../althorithm/CoinChangeSpecial";
 import ActivitySelection from "../althorithm/ActivitySelection";
 import FractionalKnapsack from "../althorithm/FractionalKnapsack";
 import Heap from "../althorithm/Heap";
 import HuffmanTree from "../althorithm/HuffmanTree";
 import Kruskal from "../althorithm/MinimumSpanningTree/Kruskal.ts";
-
+import {Prim} from "../althorithm/MinimumSpanningTree/Prim.ts";
+const count = ref(0)
 defineProps<{ msg: string }>()
 /*question(66)
 const result = knapsackWithItems(66);
@@ -23,8 +24,11 @@ HuffmanTree.generateCodes(
     HuffmanTree.buildTree("this is an example for huffman encoding")
     , "", map)
 console.log(map)*/
-Kruskal.test()
-const count = ref(0)
+/*//最小生成树，Kruskal算法
+Kruskal.test()*/
+//最小生成树，Prim算法
+const prim = new Prim()
+prim.test()
 </script>
 
 <template>
