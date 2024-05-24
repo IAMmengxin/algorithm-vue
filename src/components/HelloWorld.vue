@@ -8,6 +8,7 @@ import Heap from "../althorithm/Heap";
 import HuffmanTree from "../althorithm/HuffmanTree";
 import Kruskal from "../althorithm/MinimumSpanningTree/Kruskal.ts";
 import {Prim} from "../althorithm/MinimumSpanningTree/Prim.ts";
+import LCS from "../althorithm/DP/LCS.ts";
 const count = ref(0)
 defineProps<{ msg: string }>()
 /*question(66)
@@ -27,8 +28,9 @@ console.log(map)*/
 /*//最小生成树，Kruskal算法
 Kruskal.test()*/
 //最小生成树，Prim算法
-const prim = new Prim()
-prim.test()
+/*const prim = new Prim()
+prim.test()*/
+console.log("最长公共子序列：",LCS.recursion())
 </script>
 
 <template>
