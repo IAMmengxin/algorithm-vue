@@ -31,17 +31,29 @@ export function question(limitHeight: number = 66, goods: Goods[] = _goods) {
     let goodsList: Goods[] = [];
     //每个容量下的最大价值
     for (let j = 0; j < ln; j++) {
-        debugger
+        // debugger
         const height = goods[j].height;
         const price = goods[j].price;
-        //每当容量增加时，遍历物品，寻找能放入的最大价值
+        //每当容量增加时，遍历物品，寻找能放入的最大价值，这个循环才能计算出每个重量下的最大价值
         for (let i = height; i <= limitHeight; i++) {
             if (dp[i] < dp[i - height] + price) {
                 dp[i] = dp[i - height] + price
-                items[i] = j;
+                items[i] = j; //记录选中为的物品
             }
         }
     }
+    /*
+    //错误思路，这样的循环无法算出再每个重量下的最优价值，而且这样写并没有叠加之前的计算，仅仅只是覆盖了之前的计算
+    for (let i = 0; i <= limitHeight; i++) {
+        for (let j = 0; j < ln; j++) {
+            const {height, price} = goods[j];
+            if (i >= height) {
+                dp[i] = Math.max(dp[i], dp[i - height] + price);
+                items[i] = j;//记录选中为的物品
+            }
+        }
+    }
+    */
     // 从最大高度回溯，构建被选中物品的数组
     let currentHeight = limitHeight;
     while (currentHeight > 0) {
@@ -67,7 +79,7 @@ export function knapsackWithItems(maxHeight = 66, goods = _goods) {
 
     // 遍历每个物品
     for (let i = 0; i < goods.length; i++) {
-        const { height, price } = goods[i];
+        const {height, price} = goods[i];
         // 从最大高度开始向下遍历，确保每个物品只被计算一次
         for (let j = maxHeight; j >= height; j--) {
             if (dp[j] < dp[j - height] + price) {
