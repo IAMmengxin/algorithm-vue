@@ -31,6 +31,8 @@ Kruskal.test()*/
 /*const prim = new Prim()
 prim.test()*/
 console.log("最长公共子序列：",LCS.recursion())
+console.log("记忆法最长公共子序列：",LCS.memory())
+console.log("动态规划最长公共子序列：",LCS.dynamicProg())
 </script>
 
 <template>
