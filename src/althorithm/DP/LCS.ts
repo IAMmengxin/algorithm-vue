@@ -1,7 +1,7 @@
 //最长公共子序列
 class LCS {
-    private S1: string = 'AGGTAB'
-    private S2: string = 'GXTXAYB'
+    private S1: string = 'AGGTABA1Y'
+    private S2: string = 'GXTXAYBY'
 
     //递归法解决
     public recursion(S1 = this.S1, S2 = this.S2, m = S1.length, n = S2.length): number {
@@ -48,7 +48,7 @@ class LCS {
     //记忆法
     public memory(S1 = this.S1, S2 = this.S2, m = S1.length, n = S2.length): number {
         const queue = [[m, n, 0]];
-        const memoryQueue = new Array(m).fill([]).map(() => new Array(n).fill(-1));
+        const memoryQueue = new Array(m + 1).fill([]).map(() => new Array(n + 1).fill(-1));
         const lsc: Array<[number, number, number]> = [[0, 0, 0]];
         let qIndex = 0;
 
@@ -79,7 +79,7 @@ class LCS {
             const [s, _] = lsc[i];
             lscStr += S1[s];
         }
-        console.log("最长子序列为：", lscStr, "记忆法时间复杂度：", queue.length)
+        console.log("最长子序列为：", lscStr, "记忆法时间复杂度：", qIndex)
         return lsc[lsc.length - 1][2];
     }
 
@@ -88,25 +88,25 @@ class LCS {
         let dp1 = new Array(S2.length + 1).fill(0);
         let dp2 = new Array(S2.length + 1).fill(0);
         for (let i = S1.length; i > 0; i--) {
-            for (let j = S2.length; j > 0; j--) {
-                if (S1[i - 1] === S2[j - 1]) {
-                    dp2[j] = dp1[j] + 1;
-                } else if (dp1[j] < dp2[j + 1]) {
-                    dp2[j] = dp2[j + 1]
-                } else {
+            for (let j = S2.length; j > 0;) {
+                j--;
+                if (S1[i - 1] === S2[j]) {
+                    dp2[j] = dp1[j + 1] + 1;
+                } else if (dp2[j + 1] < dp1[j]) {
                     dp2[j] = dp1[j]
+                } else {
+                    dp2[j] = dp2[j + 1]
                 }
             }
             dp1 = dp2.map((num) => num);
+            dp2.fill(0);
         }
         let lscStr = ''
-        dp2.sort((a, b) => b - a);
-        debugger
-        for (let i = 0; i < dp2.length - 1; i++) {
-            if (dp2[i] !== dp2[i + 1])
-                lscStr += S2[dp2[i]]
+        for (let i = 0; i < dp1.length - 1; i++) {
+            if (dp1[i] !== dp1[i + 1])
+                lscStr += S2[i]
         }
-        lscStr += S2[dp2[dp2.length - 1]]
+        // lscStr += S2[dp2[dp2.length - 1]]
         console.log("最长子序列为：", lscStr, "动态规划法时间复杂度：", S1.length * S2.length)
         return dp2[0];
     }
