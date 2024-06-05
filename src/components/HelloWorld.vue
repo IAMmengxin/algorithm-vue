@@ -9,6 +9,8 @@ import HuffmanTree from "../althorithm/HuffmanTree";
 import Kruskal from "../althorithm/MinimumSpanningTree/Kruskal.ts";
 import {Prim} from "../althorithm/MinimumSpanningTree/Prim.ts";
 import LCS from "../althorithm/DP/LCS.ts";
+import GCD from "../althorithm/DP/GCD.ts";
+import IF from "../althorithm/P_NP/IF.ts";
 const count = ref(0)
 defineProps<{ msg: string }>()
 /*question(66)
@@ -30,9 +32,11 @@ Kruskal.test()*/
 //最小生成树，Prim算法
 /*const prim = new Prim()
 prim.test()*/
-console.log("最长公共子序列：",LCS.recursion())
+/*console.log("最长公共子序列：",LCS.recursion())
 console.log("记忆法最长公共子序列：",LCS.memory())
-console.log("动态规划最长公共子序列：",LCS.dynamicProg())
+console.log("动态规划最长公共子序列：",LCS.dynamicProg())*/
+/*GCD.test()*/
+IF.test()
 </script>
 
 <template>
