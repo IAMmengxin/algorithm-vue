@@ -10,7 +10,7 @@ import Kruskal from "../althorithm/MinimumSpanningTree/Kruskal.ts";
 import {Prim} from "../althorithm/MinimumSpanningTree/Prim.ts";
 import LCS from "../althorithm/DP/LCS.ts";
 import GCD from "../althorithm/DP/GCD.ts";
-import IF from "../althorithm/P_NP/IF.ts";
+import IF, {classes} from "../althorithm/P_NP/IF.ts";
 const count = ref(0)
 defineProps<{ msg: string }>()
 /*question(66)
@@ -37,6 +37,10 @@ console.log("记忆法最长公共子序列：",LCS.memory())
 console.log("动态规划最长公共子序列：",LCS.dynamicProg())*/
 /*GCD.test()*/
 IF.test()
+
+classes.subscribe("报警", (data) => {
+  console.log(data)
+})
 </script>
 
 <template>
