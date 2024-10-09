@@ -2,6 +2,12 @@
 class IF {
     /*给定正整数 N，求一共有多少组(A,B,C)满足 AxB+C=N。
     其中 1≤A,B,C≤N 且为正整数，注意(1,2,1)和(2,1,1)不相同.*/
+
+    public AFBPC(N: number){
+        for (let i = 1; i < N; i++){
+
+        }
+    }
     public IntegerFactorization(N: number): number {
         let i, n = N, ans = 0;
         for (i = 1; i < n; i++) {
