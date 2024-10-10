@@ -110,6 +110,8 @@ el-button {
         margin: 1px;
         border-radius: 2px;
         border: white 1px solid;
+        align-items: center;
+        justify-content: center;
       }
     }
   }

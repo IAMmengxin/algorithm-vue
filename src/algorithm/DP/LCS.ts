@@ -3,6 +3,7 @@ class LCS {
     private S1: string = 'AGTABAY12342'
     private S2: string = 'GXTXAYBY2323'
 
+
     public get getS1() {
         return this.S1;
     }
@@ -110,6 +111,8 @@ class LCS {
     public memoryLcs: { lcs: string } = {lcs: ''}
     public memoryLsc: Array<[number, number, number]> = [];
 
+    // '1235324'
+    // '213521'
     //记忆法
     public memory(memoryQueue: number[][] = [], S1 = this.S1, S2 = this.S2, m = S1.length, n = S2.length): number {
         const queue = [[m, n, 0]];
@@ -148,7 +151,7 @@ class LCS {
                 this.finish.is = true;
             }
             // }
-        }, 20)
+        }, 1400)
         let lscStr = '';
         for (let i = lsc.length - 1; i > 0; i--) {
             const [s, _] = lsc[i];
