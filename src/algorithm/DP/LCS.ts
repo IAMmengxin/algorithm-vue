@@ -2,6 +2,11 @@
 class LCS {
     private S1: string = 'AGTABAY12342'
     private S2: string = 'GXTXAYBY2323'
+    // private S1: string = '1235324'
+    // private S2: string = '213521'
+
+    // '1235324'
+    // '213521'
 
 
     public get getS1() {
@@ -110,6 +115,7 @@ class LCS {
     public finish: { is: boolean } = {is: false};
     public memoryLcs: { lcs: string } = {lcs: ''}
     public memoryLsc: Array<[number, number, number]> = [];
+    public pauseStep: { is: boolean } = {is: false};
 
     // '1235324'
     // '213521'
@@ -121,11 +127,13 @@ class LCS {
         this.memoryLsc = lsc;
         let qIndex = 0;
         const interval: number = setInterval(() => {
-            if (this.pause.is) return;
+            if (this.pause.is&&this.pauseStep.is) return;
+            // if () return;
             // while (qIndex < queue.length) {
             let [i, j, max] = queue[qIndex]
             if (i > 0 && j > 0) {
                 if (S1[i - 1] === S2[j - 1]) {
+                    this.pauseStep.is = true;
                     max = 1 + max;
                     queue.push([i - 1, j - 1, max])
                     memoryQueue[i - 1][j - 1] = max;
@@ -138,10 +146,12 @@ class LCS {
                     if (memoryQueue[i - 1][j] === -1) {
                         queue.push([i - 1, j, max])
                         memoryQueue[i - 1][j] = max;
+                        this.pauseStep.is = true;
                     }
                     if (memoryQueue[i][j - 1] === -1) {
                         queue.push([i, j - 1, max])
                         memoryQueue[i][j - 1] = max;
+                        this.pauseStep.is = true;
                     }
                 }
             }
@@ -151,7 +161,7 @@ class LCS {
                 this.finish.is = true;
             }
             // }
-        }, 1400)
+        }, 40)
         let lscStr = '';
         for (let i = lsc.length - 1; i > 0; i--) {
             const [s, _] = lsc[i];
