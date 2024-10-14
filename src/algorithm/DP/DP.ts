@@ -150,3 +150,27 @@ export function maxValueWithinHeight(maxHeight = 66, goods = _goods) {
     // 返回最大价值
     return dp[maxHeight];
 }
+//硬币找零
+const _coins:number[] = [
+    1,3,4
+]
+export function coinsDP(target:number = 6,coins:number[] = _coins){
+    const dp = new Array(target+1).fill(new Array(coins.length+1).fill(0));
+}
+export function coinChange(amount: number=7,coins: number[]=_coins): number {
+    // 创建一个数组来保存每个金额所需的最小硬币数
+    const dp: number[] = new Array(amount + 1).fill(amount);
+    dp[0] = 0; // 组成0元需要0个硬币
+
+    // 遍历每个硬币
+    for (const coin of coins) {
+        // 从当前硬币值到目标金额进行遍历
+        for (let i = coin; i <= amount; i++) {
+            // 更新当前金额所需的最小硬币数
+            dp[i] = Math.min(dp[i], dp[i - coin] + 1);
+        }
+    }
+
+    // 如果dp[amount]仍然是Infinity，表示无法组成该金额
+    return dp[amount] === Infinity ? -1 : dp[amount];
+}

@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import {reactive, Ref, ref} from 'vue'
-// import {question, knapsackWithItems, knapsack, maxValueWithinHeight} from "../algorithm/DP/DP.ts";
+import {question, knapsackWithItems, knapsack, maxValueWithinHeight,coinChange} from "../algorithm/DP/DP.ts";
 // import CoinChangeSpecial from "../algorithm/CoinChangeSpecial";
 // import ActivitySelection from "../algorithm/ActivitySelection";
 // import FractionalKnapsack from "../algorithm/FractionalKnapsack";
@@ -15,6 +15,7 @@ import LCS from "../algorithm/DP/LCS.ts";
 
 const count = ref(0)
 defineProps<{ msg: string }>()
+coinChange()
 /*question(66)
 const result = knapsackWithItems(66);
 console.log(`最大价值: ${result.maxValue}`,`被选中的物品:`, result.selectedItems);
