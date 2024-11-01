@@ -7,7 +7,7 @@ LCS.dynamicProg()
 
 const row = ref(LCS.getS1)
 const col = ref(LCS.getS2)
-const arr = ref(new Array(row.value.length + 1).fill([]).map(() => new Array(col.value.length + 1).fill(-1)))
+const arr = ref(new Array(col.value.length + 1).fill([]).map(() => new Array(row.value.length + 1).fill(-1)))
 LCS.memory(arr.value)
 const pause: Ref<{ is: boolean }> = ref(LCS.pause)
 pause.value.is = true

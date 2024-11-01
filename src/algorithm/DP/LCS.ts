@@ -126,6 +126,7 @@ class LCS {
         const lsc: Array<[number, number, number]> = [[0, 0, 0]];
         this.memoryLsc = lsc;
         let qIndex = 0;
+        let lastI = m,lastJ = n;
         const interval: number = setInterval(() => {
             if (this.pause.is&&this.pauseStep.is) return;
             // if () return;
@@ -137,21 +138,25 @@ class LCS {
                     max = 1 + max;
                     queue.push([i - 1, j - 1, max])
                     memoryQueue[i - 1][j - 1] = max;
-                    if (max > lsc[lsc.length - 1][2]) {
+                    if (max > lsc[lsc.length - 1][2]&&i-1<lastI&&j-1<lastJ) {
+                        lastI = i-1;
+                        lastJ = j-1;
                         lsc.push([i - 1, j - 1, max])
                         this.memoryLcs.lcs = this.getLcs()
                         this.pause.is = true;
                     }
                 } else {
-                    if (memoryQueue[i - 1][j] === -1) {
-                        queue.push([i - 1, j, max])
-                        memoryQueue[i - 1][j] = max;
-                        this.pauseStep.is = true;
-                    }
-                    if (memoryQueue[i][j - 1] === -1) {
-                        queue.push([i, j - 1, max])
-                        memoryQueue[i][j - 1] = max;
-                        this.pauseStep.is = true;
+                    if(i-1<lastI&&j-1<lastJ) {
+                        if (memoryQueue[i - 1][j] === -1) {
+                            queue.push([i - 1, j, max])
+                            memoryQueue[i - 1][j] = max;
+                            this.pauseStep.is = true;
+                        }
+                        if (memoryQueue[i][j - 1] === -1) {
+                            queue.push([i, j - 1, max])
+                            memoryQueue[i][j - 1] = max;
+                            this.pauseStep.is = true;
+                        }
                     }
                 }
             }
