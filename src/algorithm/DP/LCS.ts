@@ -127,7 +127,7 @@ class LCS {
         this.memoryLsc = lsc;
         let qIndex = 0;
         let lastI = m,lastJ = n;
-        const interval: number = setInterval(() => {
+        const interval: NodeJS.Timeout = setInterval(() => {
             if (this.pause.is&&this.pauseStep.is) return;
             // if () return;
             // while (qIndex < queue.length) {

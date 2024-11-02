@@ -10,6 +10,7 @@
   },
   "dependencies": {
     "element-plus": "^2.8.4",
+    "monaco-editor": "^0.52.0",
     "vue": "^3.4.21",
     "vue-router": "^4.4.5"
   },

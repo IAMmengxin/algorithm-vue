@@ -28,7 +28,7 @@ const nextStep = () => {
 
 const step = () => {
   let ar = [[0,0],[0,0],[0,0]]
-  let cAr = []
+  let cAr:number[][] = []
   for(let [i,a] of ar[0].entries()){
     cAr.push([])
     for(let [j,b] of ar.entries()){
