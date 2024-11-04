@@ -52,10 +52,10 @@
       <li>
         <strong>输出示例</strong>：
         <ul>
-          <li>对于广度优先遍历（BFS），输出结果应为<span style="font-weight: bold;color: yellow;">（难度简单）</span>：
+          <li>输出示例1，对于深度或广度优先遍历（BFS），输出结果应为<span style="font-weight: bold;color: yellow;">（难度简单）</span>：
             <div ref="output" style="text-align: left;" class="editor"></div>
           </li>
-          <li>对于深度优先遍历（DFS），输出结果应为<span style="font-weight: bold;color: yellow;">（难度中等）</span>：
+          <li>输出示例2，对于深度或广度优先遍历（DFS），输出结果应为<span style="font-weight: bold;color: yellow;">（难度中等）</span>：
 <!--            <pre>["A", "B", "D", "E", "C", "F", "G"]</pre>-->
             <div ref="output2" style="text-align: left;" class="editor"></div>
           </li>
@@ -70,8 +70,8 @@
         <ul>
           <li>实现以下两个函数中的一个（仅需实现其中的一个）：
             <ul>
-              <li><code>bfs(root)</code>：使用广度优先遍历并返回节点值的列表。<span style="font-weight: bold;color: yellow;">（难度简单）</span></li>
-              <li><code>dfs(root)</code>：使用深度优先遍历并返回节点值的列表。<span style="font-weight: bold;color: yellow;">（难度中等）</span></li>
+              <li><code>bfs(root)</code>：使用深度或广度优先遍历并返回节点值的列表。<span style="font-weight: bold;color: yellow;">（难度简单）</span></li>
+              <li><code>dfs(root)</code>：使用深度或广度优先遍历并返回节点值的列表。<span style="font-weight: bold;color: yellow;">（难度中等）</span></li>
             </ul>
           </li>
         </ul>
